@@ -52,8 +52,10 @@ Needs only `requests` (`python3-requests`).
 
 **B. Entry point (pip).** Install into the interpreter that runs py3status:
 ```
-uv pip install --system --break-system-packages -e .   # distro py3status (or pip)
-uv tool install py3status --with /path/to/i3status-claude   # uv tool
+pip install py3status-claude-usage                      # from PyPI
+uv tool install py3status --with py3status-claude-usage # uv tool, from PyPI
+uv pip install --system --break-system-packages -e .   # from a checkout, distro py3status
+uv tool install py3status --with /path/to/i3status-claude   # from a checkout
 ```
 
 Then:
@@ -69,3 +71,10 @@ uv sync                      # creates .venv with pytest + responses
 uv run pytest
 uv run python -m py3status_claude_usage.claude_usage ~/.claude   # one live query
 ```
+
+## Releasing
+
+1. Move the `[Unreleased]` changelog entries under a new version heading and bump `version` in `pyproject.toml`.
+2. `uv run pytest && uv build`
+3. Tag: `git tag vX.Y.Z && git push --tags`
+4. Publish: `uv publish` (with a PyPI API token via `UV_PUBLISH_TOKEN`), or let the `Publish` GitHub workflow do it on a published release (PyPI trusted publishing).
