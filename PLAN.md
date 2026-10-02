@@ -130,7 +130,7 @@ Install into the *same* interpreter that runs py3status:
 the code is a package, a shim is copied there:
 ```python
 # ~/.config/py3status/modules/claude_usage.py
-import sys; sys.path.insert(0, "/home/stepan/projects/i3status-claude/src")
+import sys; sys.path.insert(0, "<path>/i3status-claude/src")
 from py3status_claude_usage.claude_usage import Py3status  # noqa: E402,F401
 ```
 (`contrib/py3status_shim.py`; README gives a `sed`/`cp` one-liner. Only
@@ -197,7 +197,7 @@ Run: `python3 -m venv --system-site-packages .venv && .venv/bin/pip install -e '
 - `python -m py3status_claude_usage.claude_usage` – module_test prints live
   output for `~/.claude`.
 - `py3-cmd refresh claude_usage` / restart i3 bar; check both
-  `claude_usage personal` and `claude_usage bdd` appear, values match
+  `claude_usage personal` and `claude_usage company` appear, values match
   `/usage` in Claude Code, and disconnecting network keeps the last values.
 
 ## 10. Risks / open notes
