@@ -12,6 +12,12 @@ the OAuth token in `<path>/.credentials.json`. The module never refreshes the
 token (that would rotate the refresh token and log Claude Code out); if the
 token is expired the bar keeps its last values until Claude Code renews it.
 
+No Claude Code session has to stay open, but only Claude Code renews the token,
+and it does so when it is used. For an account you have not used for a while
+(for example a second `CLAUDE_CONFIG_DIR`), run `claude` once with that config
+dir, e.g. `CLAUDE_CONFIG_DIR=~/.claude-work claude -p hi`, to get up-to-date
+data. The module picks up the renewed token on its next poll.
+
 ## Configuration
 
 ```
